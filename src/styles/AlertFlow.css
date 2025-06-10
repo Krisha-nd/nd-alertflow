@@ -1,0 +1,136 @@
+.alert-flow-container {
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  position: relative; /* for absolute-positioned SVG arrows */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+/* Main node container with split layout */
+.node-box {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  text-align: center;
+  border-radius: 8px;
+  overflow: hidden;
+  border: none;
+  pointer-events: auto; /* enable interaction */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: pointer;
+  animation: nodeFadeInScale 0.4s ease forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.node-box:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
+
+/* Top section for 'node' type */
+.node-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-bottom: 1px solid #888888;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.2;
+  user-select: none;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Updated color variations with your requested colors */
+.node-top.green {
+  background: linear-gradient(135deg, #d1e189, #a9c350);
+  border-bottom: 1px solid #8aa633;
+  color: #556b00;
+}
+
+.node-top.pink {
+  background: linear-gradient(135deg, #ffc0cb, #ff8da1);
+  border-bottom: 1px solid #cc6177;
+  color: #660022;
+}
+
+.node-top.orange {
+  background: linear-gradient(135deg, #f8b878, #d99836);
+  border-bottom: 1px solid #b87000;
+  color: #663d00;
+}
+
+/* Bottom section for 'name' */
+.node-bottom {
+  padding: 8px 12px;
+  color: #333;
+  background-color: #f5f5f5; /* very light gray background */
+  font-size: 14px;
+  line-height: 1.4;
+  user-select: none;
+  white-space: normal;        /* Allow text to wrap */
+  word-break: break-word;     /* Break long words if needed */
+  overflow-wrap: break-word;  /* Ensure safe wrapping */
+}
+
+/* Icon inside top label */
+.node-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: currentColor; /* inherit from parent text color */
+}
+
+/* Static SVG arrows container */
+.custom-arrows {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 2; /* Above nodes and controls */
+  shape-rendering: geometricPrecision;
+}
+
+/* Pulse glow animation */
+@keyframes pulseGlowGray {
+  0%,
+  100% {
+    box-shadow: 0 0 12px 3px rgba(120, 120, 120, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 20px 6px rgba(120, 120, 120, 0.5);
+  }
+}
+
+/* Fade in + scale */
+@keyframes nodeFadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Optional: edge hover effect */
+.react-flow__edge:hover path {
+  stroke: #888888 !important;
+  stroke-width: 4 !important;
+  filter: drop-shadow(0 0 6px #888888) !important;
+}

@@ -1,0 +1,183 @@
+.alert-sidebar {
+  width: 280px;
+  height: 100vh;
+  background-color: #ebedf0;
+  padding: 16px;
+  box-sizing: border-box;
+  border-right: 1px solid #d0d0d0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  direction: rtl;
+  border-radius: 8px;
+  box-shadow: inset -2px 0 5px rgba(0, 0, 0, 0.05);
+  animation: slideIn 0.4s ease-out;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.alert-sidebar * {
+  direction: ltr;
+}
+
+.search-box {
+  width: 90%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border-radius: 18px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  background-color: white;
+}
+
+.search-box:focus {
+  box-shadow: 0 0 4px rgba(0, 120, 255, 0.6);
+  border-color: #3399ff;
+}
+
+.search-box::placeholder {
+  text-align: center;
+}
+
+/* Filter button styled like search box */
+.filter-toggle {
+  width: 90%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  border-radius: 18px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  text-align: center;
+}
+
+.filter-toggle:hover {
+  box-shadow: 0 0 4px rgba(0, 120, 255, 0.4);
+  border-color: #3399ff;
+}
+
+.filters {
+  padding: 0 10px 10px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.oss-label {
+  margin-left: 6px;
+}
+
+.alert-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alert-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  word-break: break-word;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+}
+
+.alert-item:hover {
+  background-color: #f5f5f5;
+  transform: translateX(2px);
+}
+
+.alert-item.selected {
+  background-color: #e6f0ff;
+  border-left: 4px solid #3399ff;
+  padding-left: 8px;
+  transform: translateX(2px);
+  box-shadow: inset 3px 0 5px rgba(0, 120, 255, 0.2);
+}
+
+.alert-id {
+  margin-right: 8px;
+  flex-shrink: 0;
+  font-weight: bold;
+  min-width: 28px;
+}
+
+/* Alert type coloring using AlertFlow node colors */
+
+.oss-red-alert {
+  background-color: #ff9999 !important; /* AlertFlow Alert Name red */
+  border-left: 4px solid #cc0000;
+}
+
+.red-alert {
+  background-color: #ff9999 !important;
+  border-left: 4px solid #cc0000;
+}
+
+.oss-green-alert {
+  background-color: #d1e189 !important; /* AlertFlow green */
+  border-left: 4px solid #82a544;
+}
+
+.green-alert {
+  background-color: #d1e189 !important;
+  border-left: 4px solid #82a544;
+}
+
+.yellow-alert {
+  background-color: #fff3cc !important; /* one shade darker yellow */
+  border-left: 4px solid #ffbf00; 
+}
+
+.similar-pink-alert {
+  background-color: #ffc0cb !important; /* AlertFlow pink */
+  border-left: 4px solid #ff69b4;
+}
+
+.orange-alert {
+  background-color: #f8b878 !important; /* AlertFlow orange */
+  border-left: 4px solid #e6a900;
+}
+
+/* Keep blue alert as it is */
+.blue-alert {
+  background-color: #e5f0ff !important;
+  border-left: 4px solid #6699ff;
+}
+
+/* Scrollbar */
+.alert-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.alert-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.alert-sidebar::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 4px;
+}
+
+.alert-sidebar::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}

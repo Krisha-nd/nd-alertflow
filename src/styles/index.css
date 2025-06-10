@@ -1,0 +1,36 @@
+/* FlowNode.css */
+
+.flow-node {
+  border: 1px solid #333;
+  border-radius: 6px;
+  width: 150px;
+  height: 80px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+  font-family: Arial, sans-serif;
+  user-select: none;
+}
+
+.flow-node-header {
+  border-bottom: 1px solid #333;
+  background-color: #f0f0f0;
+  padding: 8px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
+}
+
+.flow-node-body {
+  padding: 8px;
+  font-size: 13px;
+  text-align: center;
+  overflow-wrap: break-word;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
