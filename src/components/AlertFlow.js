@@ -63,7 +63,7 @@ const AlertFlow = ({ selectedAlertId }) => {
     const newEdges = [];
     let yCounter = 0;
 
-    const addNode = (step, x, y) => {
+    const addNode = (step, x, y, customColor = null) => {
       const isHighlighted = highlightedNodeIds.has(step.nodeNumber);
 
       let topColor = "#D3D3D3";
@@ -79,47 +79,112 @@ const AlertFlow = ({ selectedAlertId }) => {
       ];
 
       if (step.node === "Alert Name") topColor = "#ff9999";
-      else if (step.node === "AWS Frontend") topColor = "#99ccff";
+      else if (step.node === "ALB") topColor = "#99ccff";
       else if (greenTypes.includes(step.node)) topColor = "#d1e189";
       else if (pinkTypes.includes(step.node)) topColor = "#ffc0cb";
       else if (orangeTypes.includes(step.node)) topColor = "#f8b878";
 
+      if (customColor) {
+        topColor = customColor;
+      }
+
+      const label = step.node === "Internal-ALB" ? (
+        <div
+          className="node-box"
+          style={{
+            borderColor: isHighlighted ? "#555555" : "#999999",
+            boxShadow: isHighlighted
+              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
+              : "none",
+            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
+            userSelect: "none",
+          }}
+          title={step.name || "nd-production-internal-alb"}
+        >
+          <div
+            className="node-top"
+            style={{
+              backgroundColor: topColor,
+              borderBottom: "1px solid #999",
+              padding: "4px",
+              fontWeight: "bold",
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
+              color: "#000",
+            }}
+          >
+            Internal-ALB
+          </div>
+          <div className="node-bottom" style={{ padding: "4px" }}>
+            nd-production-internal-alb
+          </div>
+        </div>
+      ) : step.node === "SES" || step.node === "Webhook" ? (
+        <div
+          className="node-box"
+          style={{
+            borderColor: isHighlighted ? "#555555" : "#999999",
+            boxShadow: isHighlighted
+              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
+              : "none",
+            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
+            backgroundColor: topColor,
+            borderRadius: 12,
+            padding: "12px 0",
+            color: "#000",
+            fontWeight: "bold",
+            textAlign: "center",
+            userSelect: "none",
+            boxSizing: "border-box",
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          title={step.name || ""}
+        >
+          {step.node}
+        </div>
+      ) : (
+        <div
+          className="node-box"
+          style={{
+            borderColor: isHighlighted ? "#555555" : "#999999",
+            boxShadow: isHighlighted
+              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
+              : "none",
+            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
+            userSelect: "none",
+          }}
+          title={step.name}
+        >
+          <div
+            className="node-top"
+            style={{
+              backgroundColor: topColor,
+              borderBottom: "1px solid #999",
+              padding: "4px",
+              fontWeight: "bold",
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px",
+              color: "#000",
+            }}
+          >
+            {step.node}
+          </div>
+          <div className="node-bottom" style={{ padding: "4px" }}>
+            {step.name}
+          </div>
+        </div>
+      );
+
       newNodes.push({
         id: step.nodeNumber,
-        data: {
-          label: (
-            <div
-              className="node-box"
-              style={{
-                borderColor: isHighlighted ? "#555555" : "#999999",
-                boxShadow: isHighlighted
-                  ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
-                  : "none",
-                transform: isHighlighted ? "scale(1.1)" : "scale(1)",
-                animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
-              }}
-              title={step.name}
-            >
-              <div
-                className="node-top"
-                style={{
-                  backgroundColor: topColor,
-                  borderBottom: "1px solid #999",
-                  padding: "4px",
-                  fontWeight: "bold",
-                  borderTopLeftRadius: "8px",
-                  borderTopRightRadius: "8px",
-                  color: "#000",
-                }}
-              >
-                {step.node}
-              </div>
-              <div className="node-bottom" style={{ padding: "4px" }}>
-                {step.name}
-              </div>
-            </div>
-          ),
-        },
+        data: { label },
         position: { x, y },
         style: {
           width: isHighlighted ? NODE_WIDTH * 1.2 : NODE_WIDTH,
@@ -129,6 +194,8 @@ const AlertFlow = ({ selectedAlertId }) => {
           userSelect: "none",
           padding: "0px",
           transition: "all 0.3s ease",
+          boxSizing: "border-box",
+          overflow: "hidden",
         },
         draggable: false,
         connectable: false,
@@ -185,7 +252,7 @@ const AlertFlow = ({ selectedAlertId }) => {
       if (node10) {
         const y10 = yCounter * (70 + VERTICAL_SPACING);
         addNode(node10, START_X, y10);
-        newEdges.push(createEdge("e9-10", "9", "10"));
+        newEdges.push(createEdge("e9.5-10", "9.5", "10"));
         yCounter++;
       }
 
@@ -217,6 +284,18 @@ const AlertFlow = ({ selectedAlertId }) => {
           createEdge("e12.1-13.1", "12.1", "13.1"),
           createEdge("e12.2-13.2", "12.2", "13.2")
         );
+
+        // Add SES node after 13.1
+        const sesNode = { nodeNumber: "14.1", node: "SES", name: "" };
+        const ySes = (yCounter + 2) * (70 + VERTICAL_SPACING);
+        addNode(sesNode, START_X - HORIZONTAL_OFFSET, ySes, "#C4E0C4"); // Custom color if desired
+        newEdges.push(createEdge("e13.1-14.1", "13.1", "14.1"));
+
+        // Add Webhook node after 13.2
+        const webhookNode = { nodeNumber: "14.2", node: "Webhook", name: "" };
+        const yWebhook = (yCounter + 2) * (70 + VERTICAL_SPACING);
+        addNode(webhookNode, START_X + HORIZONTAL_OFFSET, yWebhook, "#A9D0A9"); // Custom color if desired
+        newEdges.push(createEdge("e13.2-14.2", "13.2", "14.2"));
       }
     };
 
@@ -227,7 +306,7 @@ const AlertFlow = ({ selectedAlertId }) => {
     );
 
     if (branchNodes.length === 0) {
-      for (let i = 5; i <= 9; i++) {
+      for (let i = 5; i <= 8; i++) {
         const step = nodeMap[i.toString()];
         if (!step) continue;
         const y = yCounter * (70 + VERTICAL_SPACING);
@@ -241,6 +320,24 @@ const AlertFlow = ({ selectedAlertId }) => {
               step.nodeNumber
             )
           );
+        yCounter++;
+      }
+
+      const internalAlbNode = {
+        nodeNumber: "9.5",
+        node: "Internal-ALB",
+        name: "nd-production-internal-alb",
+      };
+      const yInternalAlb = yCounter * (70 + VERTICAL_SPACING);
+      addNode(internalAlbNode, START_X, yInternalAlb, "#99ccff");
+      newEdges.push(createEdge("e8-9.5", "8", "9.5"));
+      yCounter++;
+
+      const node9 = nodeMap["9"];
+      if (node9) {
+        const y9 = yCounter * (70 + VERTICAL_SPACING);
+        addNode(node9, START_X, y9);
+        newEdges.push(createEdge("e9.5-9", "9.5", "9"));
         yCounter++;
       }
     } else {
@@ -295,19 +392,26 @@ const AlertFlow = ({ selectedAlertId }) => {
         });
       });
 
+      const internalAlbNode = {
+        nodeNumber: "9.5",
+        node: "Internal-ALB",
+        name: "nd-production-internal-alb",
+      };
+      const yInternalAlb = (yCounter + 4) * (70 + VERTICAL_SPACING);
+      addNode(internalAlbNode, START_X, yInternalAlb, "#99ccff");
+      branches.forEach((branchNodeNumber) => {
+        const lastBranchNode = branchNodeNumber.replace(/^5/, "8");
+        newEdges.push(createEdge(`e${lastBranchNode}-9.5`, lastBranchNode, "9.5"));
+      });
+
       const backend9 = nodeMap["9"];
       if (backend9) {
-        const y = (yCounter + 4) * (70 + VERTICAL_SPACING);
+        const y = (yCounter + 5) * (70 + VERTICAL_SPACING);
         addNode(backend9, START_X, y);
-        branches.forEach((branchNodeNumber) => {
-          const lastBranchNode = branchNodeNumber.replace(/^5/, "8");
-          newEdges.push(
-            createEdge(`e${lastBranchNode}-9`, lastBranchNode, "9")
-          );
-        });
+        newEdges.push(createEdge("e9.5-9", "9.5", "9"));
       }
 
-      yCounter += 5;
+      yCounter += 6;
     }
 
     buildLinearEndNodes();

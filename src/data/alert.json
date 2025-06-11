@@ -6,7 +6,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Following Distance" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -39,7 +39,7 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "6.2",
@@ -51,24 +51,24 @@
               "redis": ["ec-driveronelivelocation", "ec-devicetenanthistory", "ec-livelocation", "ec-sysconfig"],
               "thirdParty": ["OSM", "OSRM"]
             },
-            "uploadToQueue": "spa-lla-production"
+            "uploadToQueue": "spa-lla-production / spa-lla-india-production"
           },
           {
             "nodeNumber": "7.1",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "7.2",
             "node": "Queue",
-            "name": "spa-lla-production",
-            "uploadToService": "spa-lla-*"
+            "name": "spa-lla-production / spa-lla-india-production",
+            "uploadToService": "spa-lla-us / spa-lla-india"
           },
           {
             "nodeNumber": "8.1",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -78,7 +78,7 @@
           {
             "nodeNumber": "8.2",
             "node": "Analytics",
-            "name": "spa-lla-*",
+            "name": "spa-lla-us / spa-lla-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -175,7 +175,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Hard Braking" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -199,18 +199,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -293,7 +293,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Hard Acceleration" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -317,18 +317,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -409,7 +409,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "High G" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -433,18 +433,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "high-g-spa-production"
+            "uploadToQueue": "high-g-spa-production / high-g-spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "high-g-spa-production",
-            "uploadToService": "spa-*-high-g"
+            "name": "high-g-spa-production / high-g-spa-india-production",
+            "uploadToService": "spa-us-high-g / spa-india-high-g"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*-high-g",
+            "name": "spa-us-high-g / spa-india-high-g",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -491,7 +491,7 @@
           {
             "nodeNumber": "12.1",
             "node": "Queue",
-            "name": "notification-queue-production",
+            "name": "priority-notification-queue-production",
             "uploadToService": "tc-notif"
           },
           {
@@ -503,7 +503,7 @@
           {
             "nodeNumber": "13.1",
             "node": "Notification Service",
-            "name": "tc-notif",
+            "name": "tc-pnotif",
             "details": {
               "databases": ["mainDB", "observationsDB", "driverloginDB", "videodataDB"],
               "redis": ["ec-driveronelivelocation", "ec-devicetenant-history", "ec-livelocation", "ec-sysconfig"]
@@ -526,7 +526,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Traffic Light Violation" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -550,18 +550,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -643,7 +643,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Hard Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -667,18 +667,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -760,7 +760,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Relative Speeding" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -784,18 +784,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -877,7 +877,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Sign Violations" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -901,18 +901,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -994,7 +994,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding Violations" },
           { "nodeNumber": "2", "node": "Source", "name": "cloud" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1039,7 +1039,7 @@
               ],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-lla-production"
+            "uploadToQueue": "spa-lla-production / spa-lla-india-production"
           },
           {
             "nodeNumber": "6.2",
@@ -1051,7 +1051,7 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["OSM", "OSRM"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "6.3",
@@ -1068,30 +1068,30 @@
               ],
               "thirdParty": ["OSM", "OSRM"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7.1",
             "node": "Queue",
-            "name": "spa-lla-production",
-            "uploadToService": "spa-lla-*"
+            "name": "spa-lla-production / spa-lla-india-production",
+            "uploadToService": "spa-lla-us / spa-lla-india"
           },
           {
             "nodeNumber": "7.2",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "7.3",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8.1",
             "node": "Analytics",
-            "name": "spa-lla-*",
+            "name": "spa-lla-us / spa-lla-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1101,7 +1101,7 @@
           {
             "nodeNumber": "8.2",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1111,7 +1111,7 @@
           {
             "nodeNumber": "8.3",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1222,7 +1222,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Seatbelt Compilance" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1246,18 +1246,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1339,7 +1339,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Initiated" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1363,18 +1363,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "high-g-spa-production"
+            "uploadToQueue": "high-g-spa-production / high-g-spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "high-g-spa-production",
-            "uploadToService": "spa-*-high-g"
+            "name": "high-g-spa-production / high-g-spa-india-production",
+            "uploadToService": "spa-us-high-g / spa-india-high-g"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*-high-g",
+            "name": "spa-us-high-g / spa-india-high-g",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1414,7 +1414,7 @@
           {
             "nodeNumber": "12.1",
             "node": "Queue",
-            "name": "notification-queue-production",
+            "name": "priority-notification-queue-production",
             "uploadToService": "tc-notif"
           },
           {
@@ -1426,7 +1426,7 @@
           {
             "nodeNumber": "13.1",
             "node": "Notification Service",
-            "name": "tc-notif",
+            "name": "tc-pnotif",
             "details": {
               "databases": ["mainDB", "observationsDB", "driverloginDB", "videodataDB"],
               "redis": ["ec-driveronelivelocation", "ec-devicetenant-history", "ec-livelocation", "ec-sysconfig"]
@@ -1450,7 +1450,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Collision Warning" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1474,18 +1474,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1560,7 +1560,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Weaving" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1584,18 +1584,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1670,7 +1670,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "U-Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1694,18 +1694,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1780,7 +1780,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Error Events" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1804,18 +1804,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -1890,7 +1890,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Drowsiness" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -1914,18 +1914,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2000,7 +2000,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver-Star" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2024,18 +2024,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2110,7 +2110,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Railroad Crossing" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2134,18 +2134,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2220,7 +2220,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distraction" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2244,18 +2244,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2330,7 +2330,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Swerve" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2354,18 +2354,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2440,7 +2440,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Camera Obstrution" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2464,18 +2464,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2550,7 +2550,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "No Trucks Sign Violations" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2574,18 +2574,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2660,7 +2660,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Face Mask Compilance" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2684,18 +2684,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2770,7 +2770,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Low Impact" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2794,18 +2794,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2880,7 +2880,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Traffic Lights" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -2904,18 +2904,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -2990,7 +2990,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Stop Sign" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3014,18 +3014,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3100,7 +3100,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding + Traffic Lights" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3124,18 +3124,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3210,7 +3210,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Traffic Lights + Hard Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3234,18 +3234,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3320,7 +3320,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Hard Brake" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3344,18 +3344,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3430,7 +3430,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Hard Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3454,18 +3454,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3540,7 +3540,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding + Hard Brake" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3564,18 +3564,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3650,7 +3650,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding + Hard Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3674,18 +3674,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3760,7 +3760,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Following Distance + Hard Brake" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3784,18 +3784,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3870,7 +3870,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Hard Brake + Hard Turn" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -3894,18 +3894,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -3980,7 +3980,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Following Distance" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4004,18 +4004,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4090,7 +4090,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Speeding" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4114,18 +4114,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4200,7 +4200,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Driver Distracted + Weaving" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4224,18 +4224,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4310,7 +4310,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding + Following Distance" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4334,18 +4334,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4420,7 +4420,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Speeding + Weaving" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4444,18 +4444,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4530,7 +4530,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Backing" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4554,18 +4554,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4640,7 +4640,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Potential Collision" },
           { "nodeNumber": "2", "node": "Source", "name": "cloud" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4673,7 +4673,7 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "high-g-spa-production"
+            "uploadToQueue": "high-g-spa-production / high-g-spa-india-production"
           },
           {
             "nodeNumber": "6.2",
@@ -4690,19 +4690,19 @@
           {
             "nodeNumber": "7.1",
             "node": "Queue",
-            "name": "high-g-spa-production",
-            "uploadToService": "spa-*-high-g"
+            "name": "high-g-spa-production / high-g-spa-india-production",
+            "uploadToService": "spa-us-high-g / spa-india-high-g"
           },
           {
             "nodeNumber": "7.2",
             "node": "Queue",
             "name": "high-g-spa-lla-production",
-            "uploadToService": "spa-lla-*-high-g"
+            "uploadToService": "spa-lla-us-high-g"
           },
           {
             "nodeNumber": "8.1",
             "node": "Analytics",
-            "name": "spa-*-high-g",
+            "name": "spa-us-high-g / spa-india-high-g",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4712,7 +4712,7 @@
           {
             "nodeNumber": "8.2",
             "node": "Analytics",
-            "name": "spa-lla-*-high-g",
+            "name": "spa-lla-us-high-g",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4764,7 +4764,7 @@
           {
             "nodeNumber": "12.1",
             "node": "Queue",
-            "name": "notification-queue-production",
+            "name": "priority-notification-queue-production",
             "uploadToService": "tc-notif"
           },
           {
@@ -4776,7 +4776,7 @@
           {
             "nodeNumber": "13.1",
             "node": "Notification Service",
-            "name": "tc-notif",
+            "name": "tc-pnotif",
             "details": {
               "databases": ["mainDB", "observationsDB", "driverloginDB", "videodataDB"],
               "redis": [
@@ -4810,7 +4810,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Unsecure Packages" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4834,18 +4834,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -4920,7 +4920,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Smoking" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -4944,18 +4944,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -5030,7 +5030,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Roadside Parking" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -5054,18 +5054,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -5140,7 +5140,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Fuel Impact" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -5164,18 +5164,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -5250,7 +5250,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Lane Conduct" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -5274,18 +5274,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
@@ -5360,7 +5360,7 @@
         "flow": [
           { "nodeNumber": "1", "node": "Alert Name", "name": "Unauthorized Driver" },
           { "nodeNumber": "2", "node": "Source", "name": "device" },
-          { "nodeNumber": "3", "node": "AWS Frontend", "name": "nd-production-alb" },
+          { "nodeNumber": "3", "node": "ALB", "name": "nd-production-alb" },
           {
             "nodeNumber": "4",
             "node": "Frontend Service",
@@ -5384,18 +5384,18 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production",
-            "uploadToService": "spa-*"
+            "name": "spa-production / spa-india-production",
+            "uploadToService": "spa-us / spa-india"
           },
           {
             "nodeNumber": "8",
             "node": "Analytics",
-            "name": "spa-*",
+            "name": "spa-us / spa-india",
             "details": {
               "s3Buckets": ["fleetdata-production"],
               "thirdParty": ["OSM"]
