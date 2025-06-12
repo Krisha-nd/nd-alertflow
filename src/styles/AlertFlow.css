@@ -40,7 +40,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  border-bottom: 1px solid #888888;
+  border-bottom: 1px solid #888888; /* Ensure this matches the background color */
   padding: 8px 12px;
   font-weight: 700;
   font-size: 15px;
@@ -55,19 +55,19 @@
 /* Updated color variations with your requested colors */
 .node-top.green {
   background: linear-gradient(135deg, #d1e189, #a9c350);
-  border-bottom: 1px solid #8aa633;
+  border-bottom: 1px solid #8aa633; /* Ensure this matches the gradient */
   color: #556b00;
 }
 
 .node-top.pink {
   background: linear-gradient(135deg, #ffc0cb, #ff8da1);
-  border-bottom: 1px solid #cc6177;
+  border-bottom: 1px solid #cc6177; /* Ensure this matches the gradient */
   color: #660022;
 }
 
 .node-top.orange {
   background: linear-gradient(135deg, #f8b878, #d99836);
-  border-bottom: 1px solid #b87000;
+  border-bottom: 1px solid #b87000; /* Ensure this matches the gradient */
   color: #663d00;
 }
 

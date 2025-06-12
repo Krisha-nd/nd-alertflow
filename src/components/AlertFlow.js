@@ -29,7 +29,6 @@ const AlertFlow = ({ selectedAlertId }) => {
     const downstreamNodes = new Set();
     const downstreamEdges = new Set();
     const queue = [startNodeId];
-    downstreamNodes.add(startNodeId);
 
     while (queue.length > 0) {
       const current = queue.shift();
@@ -48,140 +47,21 @@ const AlertFlow = ({ selectedAlertId }) => {
 
   useEffect(() => {
     if (!alert) {
-      setNodes([]);
-      setEdges([]);
-      setHighlightedNodeIds(new Set());
-      setHighlightedEdgeIds(new Set());
-      setSelectedNode(null);
+      resetFlow();
       return;
     }
 
     const flow = alert.flow;
     const nodeMap = Object.fromEntries(flow.map((n) => [n.nodeNumber, n]));
-
     const newNodes = [];
     const newEdges = [];
     let yCounter = 0;
 
     const addNode = (step, x, y, customColor = null) => {
       const isHighlighted = highlightedNodeIds.has(step.nodeNumber);
+      const topColor = getNodeColor(step.node, customColor, isHighlighted);
 
-      let topColor = "#D3D3D3";
-      const greenTypes = ["Source"];
-      const pinkTypes = ["Queue"];
-      const orangeTypes = [
-        "Frontend Service",
-        "Ingestion",
-        "Analytics",
-        "Backend Service 1",
-        "Backend Service II",
-        "Notification Service",
-      ];
-
-      if (step.node === "Alert Name") topColor = "#ff9999";
-      else if (step.node === "ALB") topColor = "#99ccff";
-      else if (greenTypes.includes(step.node)) topColor = "#d1e189";
-      else if (pinkTypes.includes(step.node)) topColor = "#ffc0cb";
-      else if (orangeTypes.includes(step.node)) topColor = "#f8b878";
-
-      if (customColor) {
-        topColor = customColor;
-      }
-
-      const label = step.node === "Internal-ALB" ? (
-        <div
-          className="node-box"
-          style={{
-            borderColor: isHighlighted ? "#555555" : "#999999",
-            boxShadow: isHighlighted
-              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
-              : "none",
-            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
-            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
-            userSelect: "none",
-          }}
-          title={step.name || "nd-production-internal-alb"}
-        >
-          <div
-            className="node-top"
-            style={{
-              backgroundColor: topColor,
-              borderBottom: "1px solid #999",
-              padding: "4px",
-              fontWeight: "bold",
-              borderTopLeftRadius: "8px",
-              borderTopRightRadius: "8px",
-              color: "#000",
-            }}
-          >
-            Internal-ALB
-          </div>
-          <div className="node-bottom" style={{ padding: "4px" }}>
-            nd-production-internal-alb
-          </div>
-        </div>
-      ) : step.node === "SES" || step.node === "Webhook" ? (
-        <div
-          className="node-box"
-          style={{
-            borderColor: isHighlighted ? "#555555" : "#999999",
-            boxShadow: isHighlighted
-              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
-              : "none",
-            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
-            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
-            backgroundColor: topColor,
-            borderRadius: 12,
-            padding: "12px 0",
-            color: "#000",
-            fontWeight: "bold",
-            textAlign: "center",
-            userSelect: "none",
-            boxSizing: "border-box",
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          title={step.name || ""}
-        >
-          {step.node}
-        </div>
-      ) : (
-        <div
-          className="node-box"
-          style={{
-            borderColor: isHighlighted ? "#555555" : "#999999",
-            boxShadow: isHighlighted
-              ? "0 0 12px 3px rgba(85, 85, 85, 0.8)"
-              : "none",
-            transform: isHighlighted ? "scale(1.1)" : "scale(1)",
-            animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
-            userSelect: "none",
-          }}
-          title={step.name}
-        >
-          <div
-            className="node-top"
-            style={{
-              backgroundColor: topColor,
-              borderBottom: "1px solid #999",
-              padding: "4px",
-              fontWeight: "bold",
-              borderTopLeftRadius: "8px",
-              borderTopRightRadius: "8px",
-              color: "#000",
-            }}
-          >
-            {step.node}
-          </div>
-          <div className="node-bottom" style={{ padding: "4px" }}>
-            {step.name}
-          </div>
-        </div>
-      );
-
+      const label = createNodeLabel(step, topColor, isHighlighted);
       newNodes.push({
         id: step.nodeNumber,
         data: { label },
@@ -202,29 +82,26 @@ const AlertFlow = ({ selectedAlertId }) => {
       });
     };
 
-    const createEdge = (id, source, target, label = null) => {
-      const isHighlighted = highlightedEdgeIds.has(id);
-      return {
-        id,
-        source,
-        target,
-        type: "step",
-        animated: isHighlighted,
-        markerEnd: {
-          type: "arrowclosed",
-          color: isHighlighted ? "#555555" : "#999999",
-        },
-        label,
-        labelBgPadding: [6, 4],
-        labelBgBorderRadius: 4,
-        labelBgStyle: { fill: "#fff", color: "#000", fontSize: 18 },
-        style: {
-          strokeWidth: isHighlighted ? 4 : 2,
-          stroke: isHighlighted ? "#555555" : "#999999",
-          filter: isHighlighted ? "drop-shadow(0 0 4px #555555)" : "none",
-        },
-      };
-    };
+    const createEdge = (id, source, target, label = null) => ({
+      id,
+      source,
+      target,
+      type: "step",
+      animated: highlightedEdgeIds.has(id),
+      markerEnd: {
+        type: "arrowclosed",
+        color: highlightedEdgeIds.has(id) ? "#555555" : "#999999",
+      },
+      label,
+      labelBgPadding: [6, 4],
+      labelBgBorderRadius: 4,
+      labelBgStyle: { fill: "#fff", color: "#000", fontSize: 18 },
+      style: {
+        strokeWidth: highlightedEdgeIds.has(id) ? 4 : 2,
+        stroke: highlightedEdgeIds.has(id) ? "#555555" : "#999999",
+        filter: highlightedEdgeIds.has(id) ? "drop-shadow(0 0 4px #555555)" : "none",
+      },
+    });
 
     const buildLinearStartNodes = () => {
       for (let i = 1; i <= 4; i++) {
@@ -234,35 +111,24 @@ const AlertFlow = ({ selectedAlertId }) => {
         addNode(step, START_X, y);
         if (i > 1) {
           const prev = nodeMap[(i - 1).toString()];
-          if (prev)
-            newEdges.push(
-              createEdge(
-                `e${prev.nodeNumber}-${step.nodeNumber}`,
-                prev.nodeNumber,
-                step.nodeNumber
-              )
-            );
+          if (prev) newEdges.push(createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber));
         }
         yCounter++;
       }
     };
 
     const buildLinearEndNodes = () => {
-      const node10 = nodeMap["10"];
-      if (node10) {
-        const y10 = yCounter * (70 + VERTICAL_SPACING);
-        addNode(node10, START_X, y10);
-        newEdges.push(createEdge("e9.5-10", "9.5", "10"));
-        yCounter++;
-      }
-
-      const node11 = nodeMap["11"];
-      if (node11) {
-        const y11 = yCounter * (70 + VERTICAL_SPACING);
-        addNode(node11, START_X, y11);
-        newEdges.push(createEdge("e10-11", "10", "11"));
-        yCounter++;
-      }
+      const endNodes = ["10", "11"];
+      endNodes.forEach((nodeNum) => {
+        const node = nodeMap[nodeNum];
+        if (node) {
+          const y = yCounter * (70 + VERTICAL_SPACING);
+          addNode(node, START_X, y);
+          if (nodeNum === "10") newEdges.push(createEdge("e9.5-10", "9.5", "10"));
+          if (nodeNum === "11") newEdges.push(createEdge("e10-11", "10", "11"));
+          yCounter++;
+        }
+      });
 
       const q121 = nodeMap["12.1"];
       const q122 = nodeMap["12.2"];
@@ -270,40 +136,48 @@ const AlertFlow = ({ selectedAlertId }) => {
         const y12 = yCounter * (70 + VERTICAL_SPACING);
         addNode(q121, START_X - HORIZONTAL_OFFSET, y12);
         addNode(q122, START_X + HORIZONTAL_OFFSET, y12);
-        newEdges.push(
-          createEdge("e11-12.1", "11", "12.1"),
-          createEdge("e11-12.2", "11", "12.2")
-        );
+        newEdges.push(createEdge("e11-12.1", "11", "12.1"), createEdge("e11-12.2", "11", "12.2"));
+
+        const node12_3 = {
+          nodeNumber: "12.3",
+          node: "Queue",
+          name: "video-request-queue-production",
+          uploadToService: "tc-videorequest"
+        };
+        const y12_3 = yCounter * (70 + VERTICAL_SPACING);
+        addNode(node12_3, START_X, y12_3);
+        newEdges.push(createEdge("e11-12.3", "11", "12.3"));
 
         const notif131 = nodeMap["13.1"];
         const notif132 = nodeMap["13.2"];
         const y13 = (yCounter + 1) * (70 + VERTICAL_SPACING);
         addNode(notif131, START_X - HORIZONTAL_OFFSET, y13);
         addNode(notif132, START_X + HORIZONTAL_OFFSET, y13);
-        newEdges.push(
-          createEdge("e12.1-13.1", "12.1", "13.1"),
-          createEdge("e12.2-13.2", "12.2", "13.2")
-        );
+        newEdges.push(createEdge("e12.1-13.1", "12.1", "13.1"), createEdge("e12.2-13.2", "12.2", "13.2"));
 
-        // Add SES node after 13.1
+        const node13_3 = {
+          nodeNumber: "13.3",
+          node: "Backend Service III",
+          name: "tc-videorequest"
+        };
+        const y13_3 = (yCounter + 1) * (70 + VERTICAL_SPACING);
+        addNode(node13_3, START_X, y13_3, "#f8b878");
+        newEdges.push(createEdge("e12.3-13.3", "12.3", "13.3"));
+
         const sesNode = { nodeNumber: "14.1", node: "SES", name: "" };
         const ySes = (yCounter + 2) * (70 + VERTICAL_SPACING);
-        addNode(sesNode, START_X - HORIZONTAL_OFFSET, ySes, "#C4E0C4"); // Custom color if desired
+        addNode(sesNode, START_X - HORIZONTAL_OFFSET, ySes, "#C4E0C4");
         newEdges.push(createEdge("e13.1-14.1", "13.1", "14.1"));
 
-        // Add Webhook node after 13.2
         const webhookNode = { nodeNumber: "14.2", node: "Webhook", name: "" };
         const yWebhook = (yCounter + 2) * (70 + VERTICAL_SPACING);
-        addNode(webhookNode, START_X + HORIZONTAL_OFFSET, yWebhook, "#A9D0A9"); // Custom color if desired
+        addNode(webhookNode, START_X + HORIZONTAL_OFFSET, yWebhook, "#C4E0C4");
         newEdges.push(createEdge("e13.2-14.2", "13.2", "14.2"));
       }
     };
 
     buildLinearStartNodes();
-
-    const branchNodes = flow.filter((n) =>
-      n.nodeNumber.startsWith("5.") || n.nodeNumber === "5"
-    );
+    const branchNodes = flow.filter((n) => n.nodeNumber.startsWith("5.") || n.nodeNumber === "5");
 
     if (branchNodes.length === 0) {
       for (let i = 5; i <= 8; i++) {
@@ -312,14 +186,7 @@ const AlertFlow = ({ selectedAlertId }) => {
         const y = yCounter * (70 + VERTICAL_SPACING);
         addNode(step, START_X, y);
         const prev = nodeMap[(i - 1).toString()];
-        if (prev)
-          newEdges.push(
-            createEdge(
-              `e${prev.nodeNumber}-${step.nodeNumber}`,
-              prev.nodeNumber,
-              step.nodeNumber
-            )
-          );
+        if (prev) newEdges.push(createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber));
         yCounter++;
       }
 
@@ -357,16 +224,11 @@ const AlertFlow = ({ selectedAlertId }) => {
         addNode(step, x, y);
 
         let label = null;
-        if (
-          [1, 9, 42].includes(Number(alert.id)) &&
-          step?.name?.includes("lla-queue-production")
-        ) {
+        if ([1, 9, 42].includes(Number(alert.id)) && step?.name?.includes("lla-queue-production")) {
           label = "is LLA enabled : True";
         }
 
-        newEdges.push(
-          createEdge(`e4-${branchNodeNumber}`, "4", branchNodeNumber, label)
-        );
+        newEdges.push(createEdge(`e4-${branchNodeNumber}`, "4", branchNodeNumber, label));
       });
 
       const levels = ["6", "7", "8"];
@@ -378,17 +240,8 @@ const AlertFlow = ({ selectedAlertId }) => {
           const x = startXOffset + index * HORIZONTAL_OFFSET * 1.5;
           const y = (yCounter + 1 + levelIdx) * (70 + VERTICAL_SPACING);
           addNode(step, x, y);
-          const fromNodeNumber = branchNodeNumber.replace(
-            /^5/,
-            (parseInt(level) - 1).toString()
-          );
-          newEdges.push(
-            createEdge(
-              `e${fromNodeNumber}-${nextNodeNumber}`,
-              fromNodeNumber,
-              nextNodeNumber
-            )
-          );
+          const fromNodeNumber = branchNodeNumber.replace(/^5/, (parseInt(level) - 1).toString());
+          newEdges.push(createEdge(`e${fromNodeNumber}-${nextNodeNumber}`, fromNodeNumber, nextNodeNumber));
         });
       });
 
@@ -435,7 +288,12 @@ const AlertFlow = ({ selectedAlertId }) => {
 
   const handleNodeClick = (_, node) => {
     const nodeData = alert.flow.find((n) => n.nodeNumber === node.id);
-    if (!nodeData) return;
+    if (!nodeData) {
+      console.log("Node data not found for:", node.id);
+      setSelectedNode(null);
+      return;
+    }
+
     const showDetail = [
       "Frontend Service",
       "Ingestion",
@@ -443,12 +301,75 @@ const AlertFlow = ({ selectedAlertId }) => {
       "Backend Service 1",
       "Backend Service II",
       "Notification Service",
+      "Backend Service III",
     ];
+
     if (showDetail.includes(nodeData.node)) {
       setSelectedNode(nodeData);
     } else {
       setSelectedNode(null);
     }
+  };
+
+  const resetFlow = () => {
+    setNodes([]);
+    setEdges([]);
+    setHighlightedNodeIds(new Set());
+    setHighlightedEdgeIds(new Set());
+    setSelectedNode(null);
+  };
+
+  const getNodeColor = (nodeType, customColor, isHighlighted) => {
+    if (customColor) return customColor;
+
+    const colors = {
+      "Alert Name": "#ff9999",
+      "ALB": "#99ccff",
+      "Source": "#d1e189",
+      "Queue": "#ffc0cb",
+      "Frontend Service": "#f8b878",
+      "Ingestion": "#f8b878",
+      "Analytics": "#f8b878",
+      "Backend Service 1": "#f8b878",
+      "Backend Service II": "#f8b878",
+      "Notification Service": "#f8b878",
+    };
+
+    return colors[nodeType] || "#D3D3D3";
+  };
+
+  const createNodeLabel = (step, topColor, isHighlighted) => {
+    return (
+      <div
+        className="node-box"
+        style={{
+          borderColor: isHighlighted ? "#555555" : "#999999",
+          boxShadow: isHighlighted ? "0 0 12px 3px rgba(85, 85, 85, 0.8)" : "none",
+          transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+          animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
+          userSelect: "none",
+        }}
+        title={step.name || ""}
+      >
+        <div
+          className="node-top"
+          style={{
+            backgroundColor: topColor,
+            borderBottom: "1px solid #999",
+            padding: "4px",
+            fontWeight: "bold",
+            borderTopLeftRadius: "8px",
+            borderTopRightRadius: "8px",
+            color: "#000",
+          }}
+        >
+          {step.node}
+        </div>
+        <div className="node-bottom" style={{ padding: "4px" }}>
+          {step.name}
+        </div>
+      </div>
+    );
   };
 
   return (
