@@ -99,7 +99,9 @@ const AlertFlow = ({ selectedAlertId }) => {
       style: {
         strokeWidth: highlightedEdgeIds.has(id) ? 4 : 2,
         stroke: highlightedEdgeIds.has(id) ? "#555555" : "#999999",
-        filter: highlightedEdgeIds.has(id) ? "drop-shadow(0 0 4px #555555)" : "none",
+        filter: highlightedEdgeIds.has(id)
+          ? "drop-shadow(0 0 4px #555555)"
+          : "none",
       },
     });
 
@@ -111,7 +113,10 @@ const AlertFlow = ({ selectedAlertId }) => {
         addNode(step, START_X, y);
         if (i > 1) {
           const prev = nodeMap[(i - 1).toString()];
-          if (prev) newEdges.push(createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber));
+          if (prev)
+            newEdges.push(
+              createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber)
+            );
         }
         yCounter++;
       }
@@ -124,8 +129,10 @@ const AlertFlow = ({ selectedAlertId }) => {
         if (node) {
           const y = yCounter * (70 + VERTICAL_SPACING);
           addNode(node, START_X, y);
-          if (nodeNum === "10") newEdges.push(createEdge("e9.5-10", "9.5", "10"));
-          if (nodeNum === "11") newEdges.push(createEdge("e10-11", "10", "11"));
+          if (nodeNum === "10")
+            newEdges.push(createEdge("e9-10", "9", "10"));
+          if (nodeNum === "11")
+            newEdges.push(createEdge("e10-11", "10", "11"));
           yCounter++;
         }
       });
@@ -136,13 +143,14 @@ const AlertFlow = ({ selectedAlertId }) => {
         const y12 = yCounter * (70 + VERTICAL_SPACING);
         addNode(q121, START_X - HORIZONTAL_OFFSET, y12);
         addNode(q122, START_X + HORIZONTAL_OFFSET, y12);
-        newEdges.push(createEdge("e11-12.1", "11", "12.1"), createEdge("e11-12.2", "11", "12.2"));
+        newEdges.push(createEdge("e11-12.1", "11", "12.1"));
+        newEdges.push(createEdge("e11-12.2", "11", "12.2"));
 
         const node12_3 = {
           nodeNumber: "12.3",
           node: "Queue",
           name: "video-request-queue-production",
-          uploadToService: "tc-videorequest"
+          uploadToService: "tc-videorequest",
         };
         const y12_3 = yCounter * (70 + VERTICAL_SPACING);
         addNode(node12_3, START_X, y12_3);
@@ -153,12 +161,13 @@ const AlertFlow = ({ selectedAlertId }) => {
         const y13 = (yCounter + 1) * (70 + VERTICAL_SPACING);
         addNode(notif131, START_X - HORIZONTAL_OFFSET, y13);
         addNode(notif132, START_X + HORIZONTAL_OFFSET, y13);
-        newEdges.push(createEdge("e12.1-13.1", "12.1", "13.1"), createEdge("e12.2-13.2", "12.2", "13.2"));
+        newEdges.push(createEdge("e12.1-13.1", "12.1", "13.1"));
+        newEdges.push(createEdge("e12.2-13.2", "12.2", "13.2"));
 
         const node13_3 = {
           nodeNumber: "13.3",
           node: "Backend Service III",
-          name: "tc-videorequest"
+          name: "tc-videorequest",
         };
         const y13_3 = (yCounter + 1) * (70 + VERTICAL_SPACING);
         addNode(node13_3, START_X, y13_3, "#f8b878");
@@ -177,40 +186,51 @@ const AlertFlow = ({ selectedAlertId }) => {
     };
 
     buildLinearStartNodes();
-    const branchNodes = flow.filter((n) => n.nodeNumber.startsWith("5.") || n.nodeNumber === "5");
+
+    const branchNodes = flow.filter(
+      (n) => n.nodeNumber.startsWith("5.") || n.nodeNumber === "5"
+    );
 
     if (branchNodes.length === 0) {
+      // No branches scenario
       for (let i = 5; i <= 8; i++) {
         const step = nodeMap[i.toString()];
         if (!step) continue;
         const y = yCounter * (70 + VERTICAL_SPACING);
         addNode(step, START_X, y);
         const prev = nodeMap[(i - 1).toString()];
-        if (prev) newEdges.push(createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber));
+        if (prev)
+          newEdges.push(
+            createEdge(`e${prev.nodeNumber}-${step.nodeNumber}`, prev.nodeNumber, step.nodeNumber)
+          );
         yCounter++;
       }
-
+      // Insert internal ALB as node 8.5 after 8
       const internalAlbNode = {
-        nodeNumber: "9.5",
+        nodeNumber: "8.5",
         node: "Internal-ALB",
         name: "nd-production-internal-alb",
       };
-      const yInternalAlb = yCounter * (70 + VERTICAL_SPACING);
-      addNode(internalAlbNode, START_X, yInternalAlb, "#99ccff");
-      newEdges.push(createEdge("e8-9.5", "8", "9.5"));
+      const y8_5 = yCounter * (70 + VERTICAL_SPACING);
+      addNode(internalAlbNode, START_X, y8_5, "#99ccff");
+      newEdges.push(createEdge("e8-8.5", "8", "8.5"));
       yCounter++;
 
+      // Then connect node 8.5 to 9
       const node9 = nodeMap["9"];
       if (node9) {
         const y9 = yCounter * (70 + VERTICAL_SPACING);
         addNode(node9, START_X, y9);
-        newEdges.push(createEdge("e9.5-9", "9.5", "9"));
+        newEdges.push(createEdge("e8.5-9", "8.5", "9"));
         yCounter++;
       }
     } else {
+      // Branch nodes scenario
       const branches = branchNodes
         .map((n) => n.nodeNumber)
-        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+        .sort((a, b) =>
+          a.localeCompare(b, undefined, { numeric: true })
+        );
 
       const branchCount = branches.length;
       const totalBranchWidth = (branchCount - 1) * HORIZONTAL_OFFSET * 1.5;
@@ -224,7 +244,10 @@ const AlertFlow = ({ selectedAlertId }) => {
         addNode(step, x, y);
 
         let label = null;
-        if ([1, 9, 42].includes(Number(alert.id)) && step?.name?.includes("lla-queue-production")) {
+        if (
+          [1, 9, 42].includes(Number(alert.id)) &&
+          step?.name?.includes("lla-queue-production")
+        ) {
           label = "is LLA enabled : True";
         }
 
@@ -245,23 +268,31 @@ const AlertFlow = ({ selectedAlertId }) => {
         });
       });
 
-      const internalAlbNode = {
-        nodeNumber: "9.5",
-        node: "Internal-ALB",
-        name: "nd-production-internal-alb",
-      };
-      const yInternalAlb = (yCounter + 4) * (70 + VERTICAL_SPACING);
-      addNode(internalAlbNode, START_X, yInternalAlb, "#99ccff");
+      // Add internal ALB as node 8.5 below node 8 branches
+      const y8_5 = (yCounter + 4) * (70 + VERTICAL_SPACING);
+      addNode(
+        {
+          nodeNumber: "8.5",
+          node: "Internal-ALB",
+          name: "nd-production-internal-alb",
+        },
+        START_X,
+        y8_5,
+        "#99ccff"
+      );
+
+      // Connect each branch 8.x (where level is 8) to 8.5
       branches.forEach((branchNodeNumber) => {
         const lastBranchNode = branchNodeNumber.replace(/^5/, "8");
-        newEdges.push(createEdge(`e${lastBranchNode}-9.5`, lastBranchNode, "9.5"));
+        newEdges.push(createEdge(`e${lastBranchNode}-8.5`, lastBranchNode, "8.5"));
       });
 
+      // Connect node 8.5 to node 9
       const backend9 = nodeMap["9"];
       if (backend9) {
-        const y = (yCounter + 5) * (70 + VERTICAL_SPACING);
-        addNode(backend9, START_X, y);
-        newEdges.push(createEdge("e9.5-9", "9.5", "9"));
+        const y9 = (yCounter + 5) * (70 + VERTICAL_SPACING);
+        addNode(backend9, START_X, y9);
+        newEdges.push(createEdge("e8.5-9", "8.5", "9"));
       }
 
       yCounter += 6;
@@ -324,12 +355,12 @@ const AlertFlow = ({ selectedAlertId }) => {
 
     const colors = {
       "Alert Name": "#ff9999",
-      "ALB": "#99ccff",
-      "Source": "#d1e189",
-      "Queue": "#ffc0cb",
+      ALB: "#99ccff",
+      Source: "#d1e189",
+      Queue: "#ffc0cb",
       "Frontend Service": "#f8b878",
-      "Ingestion": "#f8b878",
-      "Analytics": "#f8b878",
+      Ingestion: "#f8b878",
+      Analytics: "#f8b878",
       "Backend Service 1": "#f8b878",
       "Backend Service II": "#f8b878",
       "Notification Service": "#f8b878",
@@ -402,3 +433,4 @@ const AlertFlow = ({ selectedAlertId }) => {
 };
 
 export default AlertFlow;
+

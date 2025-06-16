@@ -86,6 +86,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -141,6 +146,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -172,12 +182,7 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
-          }
+          }      
         ]
       },
       {
@@ -229,6 +234,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -278,6 +288,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -299,11 +314,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },
@@ -357,6 +367,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -406,6 +421,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -427,11 +447,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },{
@@ -483,6 +498,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -532,6 +552,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-pnotif",
@@ -553,11 +578,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },
@@ -610,6 +630,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -659,6 +684,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -680,11 +710,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },
@@ -737,6 +762,11 @@
             "uploadToService": "app-internal"
           },
           {
+            "nodeNumber": "8.5",
+            "node": "Internal-ALB",
+            "name": "nd-production-internal-alb"
+          },
+          {
             "nodeNumber": "9",
             "node": "Backend Service 1",
             "name": "app-internal",
@@ -786,6 +816,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -807,11 +842,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },
@@ -913,6 +943,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -934,11 +969,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       },
@@ -1040,6 +1070,11 @@
             "uploadToService": "tc-webhook / tc-webhook-amazon"
           },
           {
+            "nodeNumber": "12.3",
+            "node": "Queue",
+            "name": "videorequest-queue-production"
+          },
+          {
             "nodeNumber": "13.1",
             "node": "Notification Service",
             "name": "tc-notif",
@@ -1061,11 +1096,6 @@
             "nodeNumber": "13.3",
             "node": "Backend Service III",
             "name": "tc-videorequest"
-          },
-          {
-            "nodeNumber": "12.3",
-            "node": "Queue",
-            "name": "videorequest-queue-production"
           }
         ]
       }, 
@@ -5250,7 +5280,7 @@
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production / spa-india-production / spa-india-production",
+            "name": "spa-production / spa-india-production",
             "uploadToService": "spa-us / spa-india"
           },
           {
@@ -5365,12 +5395,12 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production / spa-india-production / spa-india-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production / spa-india-production / spa-india-production",
+            "name": "spa-production / spa-india-production",
             "uploadToService": "spa-us / spa-india"
           },
           {
@@ -5485,12 +5515,12 @@
               "redis": ["ec-sysconfig", "ec-production", "ec-devicetenanthistory"],
               "thirdParty": ["HereMaps"]
             },
-            "uploadToQueue": "spa-production / spa-india-production / spa-india-production"
+            "uploadToQueue": "spa-production / spa-india-production"
           },
           {
             "nodeNumber": "7",
             "node": "Queue",
-            "name": "spa-production / spa-india-production / spa-india-production",
+            "name": "spa-production / spa-india-production",
             "uploadToService": "spa-us / spa-india"
           },
           {
