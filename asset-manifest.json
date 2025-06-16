@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/nd-alertflow/static/css/main.794a2956.css",
+    "main.js": "/nd-alertflow/static/js/main.802b690d.js",
+    "static/media/login-bg.jpg": "/nd-alertflow/static/media/login-bg.ba831cfec5836b14783b.jpg",
+    "static/media/videoupload.png": "/nd-alertflow/static/media/videoupload.d776598e2cec69361a1e.png",
+    "static/media/videorequest.png": "/nd-alertflow/static/media/videorequest.b2820a367f2d98e26963.png",
+    "static/media/analytics-image.png": "/nd-alertflow/static/media/analytics-image.a8b4fe2ff3bb52cc65f9.png",
+    "static/media/spa-inward.png": "/nd-alertflow/static/media/spa-inward.7294a3f194e31a2db3a8.png",
+    "static/media/spa-outward.png": "/nd-alertflow/static/media/spa-outward.dba1e3ca608999b3554b.png",
+    "index.html": "/nd-alertflow/index.html",
+    "main.794a2956.css.map": "/nd-alertflow/static/css/main.794a2956.css.map",
+    "main.802b690d.js.map": "/nd-alertflow/static/js/main.802b690d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.794a2956.css",
+    "static/js/main.802b690d.js"
+  ]
+}
