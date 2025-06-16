@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import "./styles/login.css"; // Custom styles
+import "./styles/login.css";
+import backgroundImage from "./images/login-bg.jpg"; // Import local background
 
 const VALID_USERNAME = "cloud-sre";
 const VALID_PASSWORD = "nd-cloud-sre";
@@ -19,10 +20,15 @@ function Login({ onLogin }) {
   };
 
   return (
-    <div className="login-bg">
+    <div
+      className="login-bg"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    >
       <div className="login-card">
-        <h2 className="login-title">Alert Flow Visualizer Login</h2>
-        <form onSubmit={handleSubmit}>
+        <h2 className="login-title">Alert Flow Visualizer</h2>
+        <form onSubmit={handleSubmit} className="login-form">
           <input
             type="text"
             placeholder="Username"
@@ -40,7 +46,9 @@ function Login({ onLogin }) {
             className="login-input"
           />
           {error && <p className="login-error">{error}</p>}
-          <button type="submit" className="login-button">Enter Workspace</button>
+          <button type="submit" className="login-button">
+            Enter Workspace
+          </button>
         </form>
       </div>
     </div>
