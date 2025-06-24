@@ -1,0 +1,14 @@
+[2025-06-24T10:04:57.932Z] ALERT-FETCH - username=unauthenticated alertId=9
+[2025-06-24T10:04:57.937Z] ALERT-FETCH - username=unauthenticated alertId=9
+[2025-06-24T10:05:00.933Z] ALERT-FETCH - username=unauthenticated alertId=2
+[2025-06-24T10:05:04.857Z] ALERT-FETCH - username=unauthenticated alertId=14
+[2025-06-24T10:05:09.186Z] ALERT-FETCH - username=unauthenticated alertId=17
+[2025-06-24T10:05:11.425Z] ALERT-FETCH - username=unauthenticated alertId=11
+[2025-06-24T10:09:06.510Z] ALERT-FETCH - username=Krish alertId=9
+[2025-06-24T10:09:06.514Z] ALERT-FETCH - username=Krish alertId=9
+[2025-06-24T10:09:07.684Z] ALERT-FETCH - username=Krish alertId=2
+[2025-06-24T10:09:08.597Z] ALERT-FETCH - username=Krish alertId=4
+[2025-06-24T10:09:33.503Z] ALERT-FETCH - username=Admin alertId=2
+[2025-06-24T10:09:33.506Z] ALERT-FETCH - username=Admin alertId=2
+[2025-06-24T10:09:34.134Z] ALERT-FETCH - username=Admin alertId=9
+[2025-06-24T10:09:35.688Z] ALERT-FETCH - username=Admin alertId=6

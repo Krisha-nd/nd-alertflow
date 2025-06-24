@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Admin",
+    "username": "cloud-sre",
+    "password": "nd-cloud-sre"
+  },
+  {
+    "name": "Krish Aryan",
+    "username": "krish-aryan",
+    "password": "cloud-sre-krish"
+  },
+  {
+    "name": "Subramanian Velladurai",
+    "username": "subramanian-velladurai",
+    "password": "cloud-sre-subramanian"
+  },
+  {
+    "name": "Vinod Kalghatgi",
+    "username": "vinod-kalghatgi",
+    "password": "cloud-sre-vinod"
+  },
+  {
+    "name": "Kuldeep Singh",
+    "username": "kuldeep-singh",
+    "password": "cloud-sre-kuldeep"
+  },
+  {
+    "name": "Sathish Kannan",
+    "username": "sathish-kannan",
+    "password": "cloud-sre-sathish"
+  },
+  {
+    "name": "Uma Sankar",
+    "username": "uma-sankar",
+    "password": "cloud-sre-uma"
+  },
+  {
+    "name": "Adithya Adiga",
+    "username": "adithya-adiga",
+    "password": "cloud-sre-adithya"
+  },
+  {
+    "name": "Rohit Badiger",
+    "username": "rohit-badiger",
+    "password": "cloud-sre-rohit"
+  },
+  {
+    "name": "Achyuth Medar",
+    "username": "achyuth-medar",
+    "password": "cloud-sre-achyuth"
+  }
+]

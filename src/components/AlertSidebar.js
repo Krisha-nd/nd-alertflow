@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import alertData from "../data/alert.json";
+import React, { useState, useEffect } from "react";
 import "../styles/AlertSidebar.css";
 
 const OSS_ALERTS_RED = [
@@ -39,6 +38,24 @@ const AlertSidebar = ({ onSelectAlert, selectedAlertId }) => {
   const [showFilterOptions, setShowFilterOptions] = useState(false);
   const [ossChecked, setOssChecked] = useState(false);
   const [similarChecked, setSimilarChecked] = useState(false);
+  const [alerts, setAlerts] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/alerts");
+        if (!res.ok) throw new Error("Failed to fetch alerts");
+        const data = await res.json();
+        setAlerts(data.alerts || []);
+      } catch (err) {
+        console.error("Error fetching alerts:", err);
+        setError("Error fetching alerts.");
+      }
+    };
+
+    fetchAlerts();
+  }, []);
 
   const toggleFilterOptions = () => {
     setShowFilterOptions((prev) => !prev);
@@ -70,7 +87,7 @@ const AlertSidebar = ({ onSelectAlert, selectedAlertId }) => {
     return "";
   };
 
-  const filteredAlerts = alertData.alerts.filter((alert) =>
+  const filteredAlerts = alerts.filter((alert) =>
     alert.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -108,6 +125,8 @@ const AlertSidebar = ({ onSelectAlert, selectedAlertId }) => {
           </label>
         </div>
       )}
+
+      {error && <p className="error">{error}</p>}
 
       <ul className="alert-list">
         {filteredAlerts.map((alert) => (

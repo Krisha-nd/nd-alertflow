@@ -7,7 +7,6 @@ import {
   Controls,
 } from "reactflow";
 import "reactflow/dist/style.css";
-import alertData from "../data/alert.json";
 import DetailPanel from "./DetailPanel";
 import "../styles/AlertFlow.css";
 
@@ -17,13 +16,20 @@ const HORIZONTAL_OFFSET = 250;
 const START_X = 300;
 
 const AlertFlow = ({ selectedAlertId }) => {
-  const alert = alertData.alerts.find((a) => a.id === selectedAlertId);
-
+  const [alert, setAlert] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [highlightedNodeIds, setHighlightedNodeIds] = useState(new Set());
   const [highlightedEdgeIds, setHighlightedEdgeIds] = useState(new Set());
   const [selectedNode, setSelectedNode] = useState(null);
+
+  const resetFlow = () => {
+    setNodes([]);
+    setEdges([]);
+    setHighlightedNodeIds(new Set());
+    setHighlightedEdgeIds(new Set());
+    setSelectedNode(null);
+  };
 
   const findDownstream = (startNodeId, allEdges) => {
     const downstreamNodes = new Set();
@@ -46,10 +52,29 @@ const AlertFlow = ({ selectedAlertId }) => {
   };
 
   useEffect(() => {
-    if (!alert) {
+    if (!selectedAlertId) {
+      setAlert(null);
       resetFlow();
       return;
     }
+    const user = localStorage.getItem("name");
+    fetch(`http://localhost:5000/api/alerts/${selectedAlertId}?user=${encodeURIComponent(user)}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch alert");
+        return res.json();
+      })
+      .then((data) => {
+        setAlert(data);
+      })
+      .catch((err) => {
+        console.error("Error fetching alert:", err);
+        setAlert(null);
+        resetFlow();
+      });
+  }, [selectedAlertId]);
+
+  useEffect(() => {
+    if (!alert) return;
 
     const flow = alert.flow;
     const nodeMap = Object.fromEntries(flow.map((n) => [n.nodeNumber, n]));
@@ -192,7 +217,6 @@ const AlertFlow = ({ selectedAlertId }) => {
     );
 
     if (branchNodes.length === 0) {
-      // No branches scenario
       for (let i = 5; i <= 8; i++) {
         const step = nodeMap[i.toString()];
         if (!step) continue;
@@ -205,7 +229,7 @@ const AlertFlow = ({ selectedAlertId }) => {
           );
         yCounter++;
       }
-      // Insert internal ALB as node 8.5 after 8
+
       const internalAlbNode = {
         nodeNumber: "8.5",
         node: "Internal-ALB",
@@ -216,7 +240,6 @@ const AlertFlow = ({ selectedAlertId }) => {
       newEdges.push(createEdge("e8-8.5", "8", "8.5"));
       yCounter++;
 
-      // Then connect node 8.5 to 9
       const node9 = nodeMap["9"];
       if (node9) {
         const y9 = yCounter * (70 + VERTICAL_SPACING);
@@ -225,12 +248,9 @@ const AlertFlow = ({ selectedAlertId }) => {
         yCounter++;
       }
     } else {
-      // Branch nodes scenario
       const branches = branchNodes
         .map((n) => n.nodeNumber)
-        .sort((a, b) =>
-          a.localeCompare(b, undefined, { numeric: true })
-        );
+        .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
 
       const branchCount = branches.length;
       const totalBranchWidth = (branchCount - 1) * HORIZONTAL_OFFSET * 1.5;
@@ -268,7 +288,6 @@ const AlertFlow = ({ selectedAlertId }) => {
         });
       });
 
-      // Add internal ALB as node 8.5 below node 8 branches
       const y8_5 = (yCounter + 4) * (70 + VERTICAL_SPACING);
       addNode(
         {
@@ -281,13 +300,11 @@ const AlertFlow = ({ selectedAlertId }) => {
         "#99ccff"
       );
 
-      // Connect each branch 8.x (where level is 8) to 8.5
       branches.forEach((branchNodeNumber) => {
         const lastBranchNode = branchNodeNumber.replace(/^5/, "8");
         newEdges.push(createEdge(`e${lastBranchNode}-8.5`, lastBranchNode, "8.5"));
       });
 
-      // Connect node 8.5 to node 9
       const backend9 = nodeMap["9"];
       if (backend9) {
         const y9 = (yCounter + 5) * (70 + VERTICAL_SPACING);
@@ -305,7 +322,6 @@ const AlertFlow = ({ selectedAlertId }) => {
   }, [alert, highlightedNodeIds, highlightedEdgeIds]);
 
   const onEdgeClick = (_, edge) => {
-    if (!edges.length) return;
     const { downstreamNodes, downstreamEdges } = findDownstream(edge.source, edges);
     setHighlightedNodeIds(downstreamNodes);
     setHighlightedEdgeIds(downstreamEdges);
@@ -318,9 +334,8 @@ const AlertFlow = ({ selectedAlertId }) => {
   };
 
   const handleNodeClick = (_, node) => {
-    const nodeData = alert.flow.find((n) => n.nodeNumber === node.id);
+    const nodeData = alert?.flow?.find((n) => n.nodeNumber === node.id);
     if (!nodeData) {
-      console.log("Node data not found for:", node.id);
       setSelectedNode(null);
       return;
     }
@@ -342,17 +357,8 @@ const AlertFlow = ({ selectedAlertId }) => {
     }
   };
 
-  const resetFlow = () => {
-    setNodes([]);
-    setEdges([]);
-    setHighlightedNodeIds(new Set());
-    setHighlightedEdgeIds(new Set());
-    setSelectedNode(null);
-  };
-
   const getNodeColor = (nodeType, customColor, isHighlighted) => {
     if (customColor) return customColor;
-
     const colors = {
       "Alert Name": "#ff9999",
       ALB: "#99ccff",
@@ -365,43 +371,40 @@ const AlertFlow = ({ selectedAlertId }) => {
       "Backend Service II": "#f8b878",
       "Notification Service": "#f8b878",
     };
-
     return colors[nodeType] || "#D3D3D3";
   };
 
-  const createNodeLabel = (step, topColor, isHighlighted) => {
-    return (
+  const createNodeLabel = (step, topColor, isHighlighted) => (
+    <div
+      className="node-box"
+      style={{
+        borderColor: isHighlighted ? "#555555" : "#999999",
+        boxShadow: isHighlighted ? "0 0 12px 3px rgba(85, 85, 85, 0.8)" : "none",
+        transform: isHighlighted ? "scale(1.1)" : "scale(1)",
+        animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
+        userSelect: "none",
+      }}
+      title={step.name || ""}
+    >
       <div
-        className="node-box"
+        className="node-top"
         style={{
-          borderColor: isHighlighted ? "#555555" : "#999999",
-          boxShadow: isHighlighted ? "0 0 12px 3px rgba(85, 85, 85, 0.8)" : "none",
-          transform: isHighlighted ? "scale(1.1)" : "scale(1)",
-          animation: isHighlighted ? "pulseGlowGray 2s infinite" : "none",
-          userSelect: "none",
+          backgroundColor: topColor,
+          borderBottom: "1px solid #999",
+          padding: "4px",
+          fontWeight: "bold",
+          borderTopLeftRadius: "8px",
+          borderTopRightRadius: "8px",
+          color: "#000",
         }}
-        title={step.name || ""}
       >
-        <div
-          className="node-top"
-          style={{
-            backgroundColor: topColor,
-            borderBottom: "1px solid #999",
-            padding: "4px",
-            fontWeight: "bold",
-            borderTopLeftRadius: "8px",
-            borderTopRightRadius: "8px",
-            color: "#000",
-          }}
-        >
-          {step.node}
-        </div>
-        <div className="node-bottom" style={{ padding: "4px" }}>
-          {step.name}
-        </div>
+        {step.node}
       </div>
-    );
-  };
+      <div className="node-bottom" style={{ padding: "4px" }}>
+        {step.name}
+      </div>
+    </div>
+  );
 
   return (
     <div className="alert-flow-container" style={{ height: "700px" }}>
@@ -433,4 +436,3 @@ const AlertFlow = ({ selectedAlertId }) => {
 };
 
 export default AlertFlow;
-

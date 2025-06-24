@@ -1,0 +1,12 @@
+[2025-06-24T09:51:18.357Z] ALERT-FETCH - username=unauthenticated alertId=1
+[2025-06-24T09:51:18.361Z] ALERT-FETCH - username=unauthenticated alertId=1
+[2025-06-24T09:51:19.078Z] ALERT-FETCH - username=unauthenticated alertId=4
+[2025-06-24T09:51:21.828Z] ALERT-FETCH - username=unauthenticated alertId=9
+[2025-06-24T10:00:10.966Z] LOGIN-SUCCESS - username=Krish Aryan
+[2025-06-24T10:04:50.071Z] LOGIN-SUCCESS - username=Krish Aryan
+[2025-06-24T10:09:03.534Z] LOGIN-SUCCESS - username=Krish Aryan
+[2025-06-24T10:09:32.045Z] LOGIN-SUCCESS - username=cloud-sre
+[2025-06-24T10:12:16.880Z] LOGIN-SUCCESS - username=cloud-sre
+[2025-06-24T10:13:44.723Z] LOGIN-SUCCESS - username=Krish Aryan
+[2025-06-24T10:22:14.627Z] LOGIN-SUCCESS - username=subramanian-velladurai
+[2025-06-24T10:22:28.169Z] LOGIN-SUCCESS - username=krish-aryan

@@ -1,20 +1,32 @@
 import React, { useState } from "react";
 import "./styles/login.css";
-import backgroundImage from "./images/login-bg.jpg"; // Import local background
-
-const VALID_USERNAME = "cloud-sre";
-const VALID_PASSWORD = "nd-cloud-sre";
+import backgroundImage from "./images/login-bg.jpg";
 
 function Login({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (username === VALID_USERNAME && password === VALID_PASSWORD) {
-      onLogin();
-    } else {
+    try {
+      const res = await fetch("http://localhost:5000/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      if (!res.ok) throw new Error("Invalid credentials");
+
+      const data = await res.json();
+
+      // Store user info in localStorage
+      localStorage.setItem("username", data.username);
+      localStorage.setItem("name", data.name);
+
+      // Call parent login handler if needed
+      onLogin?.(data);
+    } catch (err) {
       setError("Invalid credentials. Try again.");
     }
   };
@@ -47,7 +59,7 @@ function Login({ onLogin }) {
           />
           {error && <p className="login-error">{error}</p>}
           <button type="submit" className="login-button">
-            Enter Workspace
+            Submit
           </button>
         </form>
       </div>
